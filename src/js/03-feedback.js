@@ -1,11 +1,13 @@
+import throttle from 'lodash.throttle';
 import { getRefs } from './getRefs';
 import storage from './storage';
 
-const LOCALSTORAGE_KEY = 'form-key';
+const LOCALSTORAGE_KEY = 'feedbacForm';
 const refs = getRefs();
 
 initForm();
 refs.form.addEventListener('input', handleInput);
+// refs.form('saveInLocalStorage', throttle(500));
 
 function handleInput(event) {
   let savedData = storage.load(LOCALSTORAGE_KEY);
@@ -18,7 +20,7 @@ function handleInput(event) {
 function initForm() {
   let savedData = storage.load(LOCALSTORAGE_KEY);
   if (savedData) {
-    refs.form.elements.name.value = savedData.email;
+    refs.form.elements.name.value = savedData.name;
     Object.entries(savedData).forEach(([name, value]) => {
       refs.form.elements[name].value = value;
     });
