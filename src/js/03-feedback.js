@@ -20,7 +20,7 @@ function handleInput(event) {
 function initForm() {
   let savedData = storage.load(LOCALSTORAGE_KEY);
   if (savedData) {
-    refs.form.elements.name.value = savedData.name;
+    // refs.form.elements.name.value = savedData.name;
     Object.entries(savedData).forEach(([name, value]) => {
       refs.form.elements[name].value = value;
     });
